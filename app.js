@@ -9,7 +9,7 @@ app.use('/', bodyParser())
 
 app.set('views', './');
 app.set('view engine', 'pug');
-
+app.use(express.static("public"))
 //connect to a database
 
 var connectionString= 'postgres://' + process.env.POSTGRES_USER + ':' + process.env.POSTGRES_PASSWORD + '@localhost/bulletinboard'
@@ -39,6 +39,10 @@ app.post('/write', (request, response) => {
           throw err
         }
         done();
+        var redirect = function() {
+          response.redirect('/')
+        };
+        redirect();
       })
     } else {
       response.end('Posting message failure: title or message missing sir!');
@@ -46,9 +50,6 @@ app.post('/write', (request, response) => {
   })
   console.log(request.body.message);
   pg.end();
-  var redirect = function() {
-    response.redirect('/')};
-  redirect();
 });
 
 // app.post('/write', (request, response) => {

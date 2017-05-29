@@ -1,5 +1,7 @@
 html
 	head
+		style
+			include public/css/index.css
 		title Bulletin Board Application
 	body
 		nav
@@ -7,5 +9,6 @@ html
 				a(href= "/write") Post message
 		h1 Messages
 		each message in messages
-			h2 #{message.title}:
-			q #{message.body}
+			div(id= '')
+				h2 #{message.title}:
+				q #{message.body}

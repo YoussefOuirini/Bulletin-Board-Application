@@ -1,7 +1,7 @@
 html
 	head
 		style
-			include form.css
+			include public/css/form.css
 		title Post a message
 	body
 		nav
@@ -9,9 +9,9 @@ html
 				a(href= "/") Index
 		h2 Type a message
 		form(action='/write' method='post')
-			h3 Title
+			h3 Title:
 			input(name= 'title' id='title')
-			h3 Type in your message
+			h3 Type in your message:
 			textarea(name= 'message' id='textbox')
 			br
 			br

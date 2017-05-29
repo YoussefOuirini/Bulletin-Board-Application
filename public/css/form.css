@@ -1,5 +1,5 @@
 body{
-	background-image: url(images/courtyard.jpg);
+	background-image: url(../images/courtyard.jpg);
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 90%;
@@ -12,7 +12,7 @@ h2, form{
 }
 
 #textbox {
-	width: 90px;
-	height: 200px;
+	width: 400px;
+	height: 400px;
 	font-size: 14pt;
 }

@@ -5,11 +5,11 @@ var app = express();
 //include the node postgres library
 var pg = require('pg');
 
-app.use('/', bodyParser())
+app.use('/', bodyParser());
 
 app.set('views', './');
 app.set('view engine', 'pug');
-app.use(express.static("public"))
+app.use(express.static("public"));
 //connect to a database
 
 var connectionString= 'postgres://' + process.env.POSTGRES_USER + ':' + process.env.POSTGRES_PASSWORD + '@localhost/bulletinboard'
@@ -21,14 +21,14 @@ app.get('/', function (req, res) {
       var results= result.rows;
       console.log(results);
       done();
-      res.render('index', {messages: results})
+      res.render('public/views/index', {messages: results})
     });
     pg.end();
   });
 })
 
 app.get('/write', (request,response) => {
-    response.render('form')
+    response.render('public/views/form')
 });
 
 app.post('/write', (request, response) => {

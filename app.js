@@ -31,50 +31,43 @@ app.get('/write', (request,response) => {
     response.render('form')
 });
 
-
 app.post('/write', (request, response) => {
   pg.connect(connectionString, function(err, client, done) {
-    if (request.body.title != "" && request.body.message != "") {
+    if (request.body.title != "" && request.body.message != "") { //To not post messages where there is no message or title. 
       client.query('insert into messages (title, body) values (\'' + request.body.title + '\', \'' + request.body.message +'\')', function (err) {
         if (err) {
           throw err
         }
         done();
       })
-      response.end('Message posted!')
     } else {
-      response.end('Posting message failure: title or message missing sir!')
+      response.end('Posting message failure: title or message missing sir!');
     }
   })
   console.log(request.body.message);
   pg.end();
+  var redirect = function() {
+    response.redirect('/')};
+  redirect();
 });
 
-
-// app.get('/', function (require, result) {
-//     pg.connect(connectionString, function(err, client, done) {
-//     client.query('select * from hats', function(err, result1) {
-//       console.log('hats: ');
-//       console.log(result1.rows);
-//       //call done and end, same as the read example
-//       done();
-//     });
-//     client.query('select * from users', function(err, result2) {
-//       console.log('users: ')
-//       console.log(result2.rows);
-//       //call done and end, same as the read example
-//       done();
-//       res.render('index', {result1: result.rows, result2: result.rows})
-//     });
-//     // client.query('insert into hats (name, material, height, brim) values (\'chicken\', \'feathers\', 10, false)', function (err) {
-//     //   if (err) {
-//     //     throw (err);
-//     //   }
-//     //   done();
-//     // });
-//     pg.end();
-//   });
-// })
+// app.post('/write', (request, response) => {
+//   pg.connect(connectionString, function(err, client, done) {
+//     if (request.body.title != "" && request.body.message != "") { //To not post messages where there is no message or title. 
+//       client.query('insert into messages (title, body) values ($1, $2)', [request.body.title, request.body.message]), function (err) {
+//         if (err) {
+//           throw err
+//         }
+//         done();
+//       }
+//       response.redirect('/');
+//     } else {
+//       response.end('Posting message failure: title or message missing sir!');
+//     }
+//   })
+//   console.log(request.body.message);
+//   pg.end();
+// });
 
 var server = app.listen(3000, function() {
   console.log('http//:localhost:' + server.address().port);

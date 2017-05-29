@@ -1,0 +1,18 @@
+body{
+	background-image: url(images/courtyard.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 90%;
+	width: 90%;
+}
+
+h2, form{
+	margin: auto;
+	width: 50%;
+}
+
+#textbox {
+	width: 90px;
+	height: 200px;
+	font-size: 14pt;
+}

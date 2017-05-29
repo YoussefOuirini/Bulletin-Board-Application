@@ -1,0 +1,11 @@
+html
+	head
+		title Bulletin Board Application
+	body
+		nav
+			div
+				a(href= "/write") Post message
+		h1 Messages
+		each message in messages
+			h2 #{message.title}
+			p #{message.body}
